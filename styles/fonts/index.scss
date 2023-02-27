@@ -1,0 +1,29 @@
+@font-face {
+  font-family: Arimo;
+  font-style: normal;
+  font-weight: normal;
+  src: url('/styles/fonts/Arimo-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+:is(body, button, textarea) {
+  font-family: var(--pp-neue-montreal), Arial, PingFangSC-Regular, 'Microsoft YaHei', sans-serif !important;
+}
+
+input {
+  font-family: Arimo, monospace;
+}
+
+input[type='number'] {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    margin: 0;
+    appearance: none;
+  }
+}
+
+:lang(zh) {
+  :is(body, button, input, textarea) {
+    font-family: PingFangSC-Regular, 'Microsoft YaHei', Arial, sans-serif !important;
+  }
+}

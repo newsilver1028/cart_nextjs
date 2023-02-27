@@ -1,0 +1,82 @@
+$BP_MOBILE: 640;
+$BP_TABLET: 768;
+$BP_SMALL_DESKTOP: 1440;
+$BP_LARGE_DESKTOP: 1920;
+
+:export {
+  /* stylelint-disable property-no-unknown */
+  bpM: $BP_MOBILE;
+  bpT: $BP_TABLET;
+  bpSD: $BP_SMALL_DESKTOP;
+  bpLD: $BP_LARGE_DESKTOP;
+}
+
+/// ~639
+@mixin mobileOnly() {
+  @media only screen and (max-width: #{$BP_MOBILE - 1}px) {
+    @content;
+  }
+}
+
+/// 640~
+@mixin afterMobile() {
+  @media only screen and (min-width: #{$BP_MOBILE}px) {
+    @content;
+  }
+}
+
+/// ~767
+@mixin untilTablet() {
+  @media only screen and (max-width: #{$BP_TABLET - 1}px) {
+    @content;
+  }
+}
+
+/// 768~1439
+@mixin tabletOnly() {
+  @media only screen and (min-width: #{$BP_MOBILE}px) and (max-width: #{$BP_TABLET - 1}px) {
+    @content;
+  }
+}
+
+/// 768~
+@mixin afterTablet() {
+  @media only screen and (min-width: #{$BP_TABLET}px) {
+    @content;
+  }
+}
+
+/// ~1439
+@mixin untilSmallDesktop() {
+  @media only screen and (max-width: #{$BP_SMALL_DESKTOP - 1}px) {
+    @content;
+  }
+}
+
+/// 768~1439
+@mixin smallDesktopOnly() {
+  @media only screen and (min-width: #{$BP_TABLET}px) and (max-width: #{$BP_SMALL_DESKTOP - 1}px) {
+    @content;
+  }
+}
+
+/// 1440~
+@mixin afterSmallDesktop() {
+  @media only screen and (min-width: #{$BP_SMALL_DESKTOP}px) {
+    @content;
+  }
+}
+
+/// ~1919
+@mixin untilLargeDesktop() {
+  @media only screen and (max-width: #{$BP_LARGE_DESKTOP - 1}px) {
+    @content;
+  }
+}
+
+/// 1920~
+@mixin afterLargeDesktop() {
+  @media only screen and (min-width: #{$BP_LARGE_DESKTOP}px) {
+    @content;
+  }
+}

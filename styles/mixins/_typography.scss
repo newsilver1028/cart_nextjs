@@ -1,0 +1,209 @@
+@use 'styles/mixins/_responsive.scss' as r;
+
+@mixin monoType {
+  font-family: Arimo, monospace !important;
+}
+
+@mixin fontDisplay {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 0.95;
+
+  @include r.tabletOnly {
+    font-size: 64px;
+  }
+
+  @include r.afterTablet {
+    font-size: 96px;
+  }
+}
+
+@mixin fontH1 {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.1;
+
+  @include r.tabletOnly {
+    font-size: 48px;
+  }
+
+  @include r.afterTablet {
+    font-size: 64px;
+  }
+}
+
+@mixin fontH2 {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1.1;
+
+  @include r.afterTablet {
+    font-size: 48px;
+  }
+}
+
+@mixin fontH3 {
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.1;
+
+  @include r.afterTablet {
+    font-size: 32px;
+  }
+}
+
+@mixin fontH4 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.1;
+
+  @include r.afterTablet {
+    font-size: 24px;
+  }
+}
+
+@mixin fontH5 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+@mixin fontH6 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+@mixin fontSubHead {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.1;
+
+  @include r.afterTablet {
+    font-size: 14px;
+  }
+}
+
+@mixin fontBody1 {
+  font-size: 16px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 18px;
+  }
+}
+
+@mixin fontBody2 {
+  font-size: 14px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 16px;
+  }
+}
+
+@mixin fontBody3 {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+@mixin fontCaption {
+  font-size: 10px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+}
+
+@mixin fontNumberTitle {
+  @include monoType;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 32px;
+  }
+}
+
+@mixin fontNumber1 {
+  @include monoType;
+  font-size: 18px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 20px;
+  }
+}
+
+@mixin fontNumber2 {
+  @include monoType;
+  font-size: 14px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 16px;
+  }
+}
+
+@mixin fontNumber3 {
+  @include monoType;
+  font-size: 12px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 14px;
+  }
+}
+
+@mixin fontNumber4 {
+  @include monoType;
+  font-size: 10px;
+  line-height: 1.4;
+
+  @include r.afterTablet {
+    font-size: 12px;
+  }
+}
+
+@mixin fontButton1 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+@mixin fontButton2 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+@mixin fontButton3 {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+@mixin numberFonts {
+  &.numTitle {
+    @include fontNumberTitle;
+  }
+
+  &.num1 {
+    @include fontNumber1;
+  }
+
+  &.num2 {
+    @include fontNumber2;
+  }
+
+  &.num3 {
+    @include fontNumber3;
+  }
+
+  &.num4 {
+    @include fontNumber4;
+  }
+}
