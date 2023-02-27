@@ -1,21 +1,26 @@
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'TODO: Input Title',
-  description: 'TODO: Input Description',
-  viewport: { width: 'device-width', initialScale: 1 },
-  icons: [
-    {
-      url: 'favicon-light.ico',
-      media: '(prefers-color-scheme: light)',
-    },
-    {
-      url: '/favicon-dark.ico',
-      media: '(prefers-color-scheme: dark)',
-    },
-  ],
-};
+import { getMerchantInfo } from '@/service/merchant';
+import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
+import Categories from './components/Categories';
 
 export default function Home() {
-  return <main></main>;
+  const { data } = useQuery(['getMerchantInfo'], () => getMerchantInfo());
+  const itemsByCategories = data?.items.reduce((acc: any, curr: any) => {
+    const { id, categoryName, name, price } = curr;
+    if (!acc[categoryName]) {
+      acc[categoryName] = [];
+    }
+    acc[categoryName].push({ id, name, price });
+    return acc;
+  }, {});
+
+  return (
+    <main>
+      <h1>{data?.merchantName}</h1>
+      <Link href='/cart'>cart</Link>
+      <Categories items={itemsByCategories} />
+    </main>
+  );
 }

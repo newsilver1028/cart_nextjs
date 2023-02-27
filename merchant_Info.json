@@ -1,0 +1,31 @@
+{
+  "minimum_order_price": 15000,
+  "merchant_name": "오모가리 김치찌개",
+  "items": [
+    { "id": "item1", "category_id": "chicken", "category_name": "치킨", "name": "순살치킨 6조각", "price": 5000 },
+    { "id": "item2", "category_id": "bob", "category_name": "밥류", "name": "꼬마 김밥", "price": 3500 },
+    { "id": "item3", "category_id": "bob", "category_name": "밥류", "name": "에그마요미니덮밥", "price": 4500 },
+    { "id": "item4", "category_id": "bob", "category_name": "밥류", "name": "돈까스마요덮밥", "price": 6500 },
+    { "id": "item5", "category_id": "bob", "category_name": "밥류", "name": "치킨마요덮밥", "price": 7500 },
+    { "id": "item6", "category_id": "ddeokbboki", "category_name": "떡볶이", "name": "마라떡볶이", "price": 10000 },
+    { "id": "item7", "category_id": "ddeokbboki", "category_name": "떡볶이", "name": "떡복이", "price": 4000 },
+    { "id": "item8", "category_id": "ddeokbboki", "category_name": "떡볶이", "name": "돈까스 떡볶이", "price": 5500 },
+    {
+      "id": "item9",
+      "category_id": "fries",
+      "category_name": "튀김",
+      "name": "튀김 세트(오징어, 김말이, 만두, 고구마, 오뎅 튀김, 고추 튀김, 새우 튀김, 감자 튀김)",
+      "price": 12000
+    },
+    { "id": "item10", "category_id": "fries", "category_name": "튀김", "name": "새우 튀김 2개", "price": 1800 },
+    { "id": "item11", "category_id": "fries", "category_name": "튀김", "name": "김말이 튀김 2개", "price": 1800 },
+    { "id": "item12", "category_id": "fries", "category_name": "튀김", "name": "오징어 튀김 2개", "price": 1800 },
+    { "id": "item13", "category_id": "fries", "category_name": "튀김", "name": "만두 튀김 2개", "price": 1800 }
+  ],
+  "discounts": [
+    { "id": "chutjumun", "name": "첫 주문 할인 🐷", "discount_rate": 3 },
+    { "id": "discount_1", "name": "단골 할인 ☺️", "discount_rate": 30 },
+    { "id": "discount_2", "name": "집에가고싶다..🥲", "discount_rate": 80 },
+    { "id": "discount_3", "name": "🦆 리뷰 이벤트!", "discount_rate": 10 }
+  ]
+}
