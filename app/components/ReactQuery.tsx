@@ -9,6 +9,8 @@ type Props = {
 
 const queryClient = new QueryClient();
 
-export default function ReactQuery({ children }: Props) {
+const ReactQuery = ({ children }: Props) => {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
-}
+};
+
+export default ReactQuery;

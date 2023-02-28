@@ -1,11 +1,11 @@
 'use client';
 
-import { getMerchantInfo } from '@/service/merchant';
+import { getMerchantInfo } from '@/app/service/merchant';
 import { useQuery } from '@tanstack/react-query';
-import Link from 'next/link';
 import Categories from './components/Categories';
+import Nav from './components/Nav';
 
-export default function Home() {
+const Home = () => {
   const { data } = useQuery(['getMerchantInfo'], () => getMerchantInfo());
   const itemsByCategories = data?.items.reduce((acc: any, curr: any) => {
     const { id, categoryName, name, price } = curr;
@@ -18,9 +18,10 @@ export default function Home() {
 
   return (
     <main>
-      <h1>{data?.merchantName}</h1>
-      <Link href='/cart'>cart</Link>
+      <Nav merchantName={data?.merchantName} />
       <Categories items={itemsByCategories} />
     </main>
   );
-}
+};
+
+export default Home;
