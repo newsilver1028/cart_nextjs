@@ -1,5 +1,8 @@
+'use client';
+
 import { MouseEventHandler, ReactNode } from 'react';
 import { getFormattedPrice } from '@/app/util/number';
+import { Item } from '../api/merchant/types';
 
 interface Props {
   item: Item;
@@ -7,7 +10,7 @@ interface Props {
   children?: ReactNode;
 }
 
-const Item = ({ item, onClickItem, children }: Props) => {
+const CartItem = ({ item, onClickItem, children }: Props) => {
   const { name, price } = item;
   const formattedPrice = getFormattedPrice(price);
 
@@ -20,4 +23,4 @@ const Item = ({ item, onClickItem, children }: Props) => {
   );
 };
 
-export default Item;
+export default CartItem;

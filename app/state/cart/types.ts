@@ -1,10 +1,10 @@
-interface CartItem {
+export interface CartItem {
   name: string;
   quantity: number;
   price: number;
 }
 
-interface Cart {
+export interface Cart {
   items: CartItem[];
   totalDiscountRate: number;
 }

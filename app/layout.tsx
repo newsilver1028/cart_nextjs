@@ -2,18 +2,16 @@
 
 import '@/styles/globals.scss';
 import { globalFont } from '@/styles/fonts';
-import { Provider } from 'jotai';
-import ReactQuery from './components/ReactQuery';
+import { RecoilRoot } from 'recoil';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en' className={globalFont.className}>
       <body>
-        {children}
-        {/* <Provider>
-          <ReactQuery>{children}</ReactQuery>
-        </Provider> */}
+        <RecoilRoot>{children}</RecoilRoot>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

@@ -1,17 +1,7 @@
-'use client';
-
 import { AppProps } from 'next/app';
-import { Provider } from 'jotai';
-import ReactQuery from './components/ReactQuery';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
-  return (
-    <Provider>
-      <ReactQuery>
-        <Component {...pageProps} />
-      </ReactQuery>
-    </Provider>
-  );
+const App = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />;
 };
 
-export default MyApp;
+export default App;

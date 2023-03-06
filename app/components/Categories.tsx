@@ -1,16 +1,17 @@
-import { useAtom } from 'jotai';
+'use client';
+
 import { MouseEventHandler } from 'react';
-import { cartState } from '../state/cartState';
-import Item from './Item';
+import { useRecoilState } from 'recoil';
+import { ItemsByCategories } from '../api/merchant/types';
+import { cartState } from '../state/cart';
+import CartItem from './CartItem';
 
 interface Props {
   items?: ItemsByCategories;
 }
 
-const cartAtom = useAtom(cartState);
-
 const Categories = ({ items }: Props) => {
-  const [cart, setCart] = cartAtom;
+  const [cart, setCart] = useRecoilState(cartState);
 
   if (!items) return null;
   const categoryNames = Object.keys(items);
@@ -18,15 +19,13 @@ const Categories = ({ items }: Props) => {
   const onClickItem: MouseEventHandler<HTMLDivElement> = (e) => {
     const { name, price } = e.currentTarget.dataset;
     if (!name || !price) return;
-    // alert을 띄워볼까
+    // alert
     if (cart.items.find((i) => i.name === name)) return;
     setCart((prev) => ({
       ...prev,
       items: [...prev.items, { name, price: Number(price), quantity: 1 }],
     }));
   };
-
-  // console.log({ cartAtom });
 
   return (
     <section>
@@ -35,7 +34,7 @@ const Categories = ({ items }: Props) => {
           <div key={name}>
             <h2>{name}</h2>
             {items[name].map((item) => (
-              <Item key={item.id} item={item} onClickItem={onClickItem} />
+              <CartItem key={item.id} item={item} onClickItem={onClickItem} />
             ))}
           </div>
         );

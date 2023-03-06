@@ -1,13 +1,16 @@
-'use client';
-
-import { getMerchantInfo } from '@/app/service/merchant';
-import { useQuery } from '@tanstack/react-query';
 import Categories from './components/Categories';
 import Nav from './components/Nav';
+import { SERVER_URL } from './constant';
 
-const Home = () => {
-  const { data } = useQuery(['getMerchantInfo'], () => getMerchantInfo());
-  const itemsByCategories = data?.items.reduce((acc: any, curr: any) => {
+const fetchMerchantInfo = async () => {
+  const res = await fetch(SERVER_URL);
+  return res.json();
+};
+
+const Home = async () => {
+  const merchantInfo = await fetchMerchantInfo();
+
+  const itemsByCategories = merchantInfo?.items.reduce((acc: any, curr: any) => {
     const { id, categoryName, name, price } = curr;
     if (!acc[categoryName]) {
       acc[categoryName] = [];
@@ -18,7 +21,7 @@ const Home = () => {
 
   return (
     <main>
-      <Nav merchantName={data?.merchantName} />
+      <Nav merchantName={merchantInfo?.merchantName} />
       <Categories items={itemsByCategories} />
     </main>
   );

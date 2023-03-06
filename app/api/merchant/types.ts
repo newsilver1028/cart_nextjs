@@ -1,22 +1,22 @@
-interface Discount {
+export interface Discount {
   id: string;
   name: string;
   discountRate: number;
 }
 
-interface GetMerchantInfoResponse {
+export interface GetMerchantInfoResponse {
   minimumOrderPrice: number;
   merchantName: string;
   items: Item[];
   discounts: Discount[];
 }
 
-interface Item {
+export interface Item {
   id: string;
   name: string;
   price: number;
 }
 
-interface ItemsByCategories {
-  [cetegoryName: string]: Item[];
+export interface ItemsByCategories {
+  [categoryName: string]: Item[];
 }
