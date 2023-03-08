@@ -4,7 +4,7 @@ import '@/styles/globals.scss';
 import { globalFont } from '@/styles/fonts';
 import { RecoilRoot } from 'recoil';
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang='en' className={globalFont.className}>
       <body>
@@ -14,4 +14,4 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default RootLayout;
+export default Layout;

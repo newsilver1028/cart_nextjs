@@ -1,5 +1,5 @@
 export interface Discount {
-  id: string;
+  id?: string;
   name: string;
   discountRate: number;
 }
@@ -12,7 +12,7 @@ export interface GetMerchantInfoResponse {
 }
 
 export interface Item {
-  id: string;
+  id?: string;
   name: string;
   price: number;
 }

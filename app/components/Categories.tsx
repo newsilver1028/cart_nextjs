@@ -3,15 +3,15 @@
 import { MouseEventHandler } from 'react';
 import { useRecoilState } from 'recoil';
 import { ItemsByCategories } from '../api/merchant/types';
-import { cartState } from '../state/cart';
-import CartItem from './CartItem';
+import { cartSelector } from '../state/cart';
+import MerchantItem from './MerchantItem';
 
 interface Props {
   items?: ItemsByCategories;
 }
 
 const Categories = ({ items }: Props) => {
-  const [cart, setCart] = useRecoilState(cartState);
+  const [cart, setCart] = useRecoilState(cartSelector({}));
 
   if (!items) return null;
   const categoryNames = Object.keys(items);
@@ -34,7 +34,7 @@ const Categories = ({ items }: Props) => {
           <div key={name}>
             <h2>{name}</h2>
             {items[name].map((item) => (
-              <CartItem key={item.id} item={item} onClickItem={onClickItem} />
+              <MerchantItem key={item.id} item={item} onClickItem={onClickItem} />
             ))}
           </div>
         );

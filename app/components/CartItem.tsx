@@ -1,25 +1,30 @@
-'use client';
-
-import { MouseEventHandler, ReactNode } from 'react';
-import { getFormattedPrice } from '@/app/util/number';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Item } from '../api/merchant/types';
+import { cartSelector, CartSelectorAction, cartState } from '../state/cart';
+import ControlButton from './ControlButton';
+import MerchantItem from './MerchantItem';
 
 interface Props {
   item: Item;
-  onClickItem: MouseEventHandler<HTMLDivElement>;
-  children?: ReactNode;
 }
 
-const CartItem = ({ item, onClickItem, children }: Props) => {
-  const { name, price } = item;
-  const formattedPrice = getFormattedPrice(price);
+const CartItem = ({ item }: Props) => {
+  const cart = useRecoilValue(cartState);
+  const quantity = cart.items.find((i) => i.name === item.name)?.quantity ?? 0;
+
+  const decreaseSelector = useSetRecoilState(cartSelector({ action: CartSelectorAction.DECREASE, name: item.name }));
+  const increaseSelector = useSetRecoilState(cartSelector({ action: CartSelectorAction.INCREASE, name: item.name }));
+  const deleteSelector = useSetRecoilState(cartSelector({ action: CartSelectorAction.DELETE, name: item.name }));
 
   return (
-    <div data-name={name} data-price={price} onClick={onClickItem}>
-      {name}
-      <p>{formattedPrice}</p>
-      {children}
-    </div>
+    <MerchantItem item={item}>
+      <ControlButton
+        quantity={quantity}
+        handleDecrease={() => decreaseSelector(cart)}
+        handleIncrease={() => increaseSelector(cart)}
+        handleDelete={() => deleteSelector(cart)}
+      />
+    </MerchantItem>
   );
 };
 

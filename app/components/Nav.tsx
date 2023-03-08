@@ -5,8 +5,6 @@ interface Props {
 }
 
 const Nav = ({ merchantName }: Props) => {
-  if (!merchantName) return null;
-
   return (
     <header>
       <h1>{merchantName}</h1>
