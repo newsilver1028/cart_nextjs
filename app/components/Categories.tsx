@@ -19,7 +19,7 @@ const Categories = ({ items }: Props) => {
   const onClickItem: MouseEventHandler<HTMLDivElement> = (e) => {
     const { name, price } = e.currentTarget.dataset;
     if (!name || !price) return;
-    // alert
+    // TODO: alert
     if (cart.items.find((i) => i.name === name)) return;
     setCart((prev) => ({
       ...prev,
