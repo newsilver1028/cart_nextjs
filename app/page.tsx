@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { getMerchantInfo } from './api/merchant';
 import { GetMerchantInfoResponse } from './api/merchant/types';
+import { discountsState } from './state/discounts';
 import Categories from './components/Categories';
 import Nav from './components/Nav';
-import { discountsState } from './state/discounts';
 
 const fetchMerchantInfo = async () => {
   const res = await getMerchantInfo();

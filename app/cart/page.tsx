@@ -5,9 +5,9 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { Discount } from '../api/merchant/types';
 import { cartSelector } from '../state/cart';
 import { checkedDiscountsState, discountsState } from '../state/discounts';
+import { getFormattedPrice } from '../util/number';
 import DiscountItem from '../components/DiscountItem';
 import CartItem from '../components/CartItem';
-import { getFormattedPrice } from '../util/number';
 
 const Cart = () => {
   const cartList = useRecoilValue(cartSelector({}));

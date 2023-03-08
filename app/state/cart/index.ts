@@ -1,5 +1,5 @@
 import { atom, selectorFamily } from 'recoil';
-import { checkedDiscountsState, discountsState } from '../discounts';
+import { checkedDiscountsState } from '../discounts';
 import { Cart, CartItem } from './types';
 
 const INIT_VALUE = {
@@ -59,10 +59,6 @@ const cartSelector = selectorFamily<Cart, { action?: string; name?: string }>({
       setCartValue.items = setItems;
       set(cartState, setCartValue);
     },
-  dangerouslyAllowMutability: true,
-  cachePolicy_UNSTABLE: {
-    eviction: 'most-recent',
-  },
 });
 
 export { cartState, CartSelectorAction, cartSelector };

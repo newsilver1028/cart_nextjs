@@ -45,8 +45,6 @@
         "labelAttributes": ["htmlFor"],
         "controlComponents": ["input"]
       }
-    ],
-    "no-unused-vars": "warn",
-    "import/prefer-default-export": "warn"
+    ]
   }
 }
