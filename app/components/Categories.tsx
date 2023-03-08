@@ -4,6 +4,7 @@ import { MouseEventHandler } from 'react';
 import { useRecoilState } from 'recoil';
 import { ItemsByCategories } from '../api/merchant/types';
 import { cartSelector } from '../state/cart';
+import Loading from '../loading';
 import MerchantItem from './MerchantItem';
 
 interface Props {
@@ -12,9 +13,6 @@ interface Props {
 
 const Categories = ({ items }: Props) => {
   const [cart, setCart] = useRecoilState(cartSelector({}));
-
-  if (!items) return null;
-  const categoryNames = Object.keys(items);
 
   const onClickItem: MouseEventHandler<HTMLDivElement> = (e) => {
     const { name, price } = e.currentTarget.dataset;
@@ -26,6 +24,9 @@ const Categories = ({ items }: Props) => {
       items: [...prev.items, { name, price: Number(price), quantity: 1 }],
     }));
   };
+
+  if (!items) return <Loading />;
+  const categoryNames = Object.keys(items);
 
   return (
     <section>
