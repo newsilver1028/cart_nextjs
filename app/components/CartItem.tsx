@@ -17,7 +17,7 @@ const CartItem = ({ item }: Props) => {
   const deleteSelector = useSetRecoilState(cartSelector({ action: CartSelectorAction.DELETE, name: item.name }));
 
   return (
-    <MerchantItem item={item}>
+    <MerchantItem item={item} quantity={quantity}>
       <ControlButton
         quantity={quantity}
         handleDecrease={() => decreaseSelector(cart)}

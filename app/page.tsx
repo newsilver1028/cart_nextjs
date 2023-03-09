@@ -5,8 +5,9 @@ import { useSetRecoilState } from 'recoil';
 import { getMerchantInfo } from './api/merchant';
 import { GetMerchantInfoResponse } from './api/merchant/types';
 import { discountsState } from './state/discounts';
+import { storeState } from './state/store';
 import Categories from './components/Categories';
-import Nav from './components/Nav';
+import Loading from './loading';
 
 const fetchMerchantInfo = async () => {
   const res = await getMerchantInfo();
@@ -15,13 +16,14 @@ const fetchMerchantInfo = async () => {
 
 const Home = () => {
   const [merchantInfo, setMerchantInfo] = useState<GetMerchantInfoResponse>();
-
+  const setStoreInfo = useSetRecoilState(storeState);
   const setDiscounts = useSetRecoilState(discountsState);
 
   useEffect(() => {
     (async () => {
       const res = await fetchMerchantInfo();
       setMerchantInfo(res);
+      setStoreInfo({ merchantName: res.merchantName, minimumOrderPrice: res.minimumOrderPrice });
       setDiscounts(res.discounts);
     })();
   }, []);
@@ -35,12 +37,9 @@ const Home = () => {
     return acc;
   }, {});
 
-  return (
-    <main>
-      <Nav merchantName={merchantInfo?.merchantName} />
-      <Categories items={itemsByCategories} />
-    </main>
-  );
+  // if (merchantInfo) return <Loading />;
+
+  return <Categories items={itemsByCategories} />;
 };
 
 export default Home;

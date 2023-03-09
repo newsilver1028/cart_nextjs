@@ -1,0 +1,14 @@
+.buttonWrapper {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-end;
+
+  button {
+    padding: 0;
+    height: 100%;
+  }
+
+  .buttonGroup {
+    display: flex;
+  }
+}

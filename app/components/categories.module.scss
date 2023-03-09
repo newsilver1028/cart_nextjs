@@ -1,0 +1,10 @@
+.wrapper {
+  .list {
+    padding: 20px;
+    background-color: white;
+  }
+
+  .list + .list {
+    margin-top: 20px;
+  }
+}

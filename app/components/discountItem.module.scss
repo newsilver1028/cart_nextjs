@@ -1,0 +1,15 @@
+.checkbox {
+  background-color: white;
+  align-items: center;
+
+  label {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    > p {
+      color: lightslategray;
+    }
+  }
+}

@@ -1,31 +1,32 @@
-import { ChangeEventHandler } from 'react';
+import { Checkbox, List } from 'antd';
 import { Discount } from '../api/merchant/types';
 import { getPercentPrice } from '../util/number';
+import styles from './discountItem.module.scss';
 
 interface Props {
   item: Discount;
-  handleCheckbox: ChangeEventHandler<HTMLInputElement>;
+  handleCheckbox: any;
 }
 
 const DiscountItem = ({ item, handleCheckbox }: Props) => {
   const { id, name, discountRate } = item;
 
   return (
-    <div>
-      <input
-        type='checkbox'
+    <List.Item>
+      <Checkbox
         id={id}
         value={name}
         name='discountCheckbox'
-        data-discountrate={discountRate}
         onChange={(e) => handleCheckbox(e)}
         defaultChecked
-      />
-      <label htmlFor={id}>
-        {name}
-        <p>{getPercentPrice(discountRate)}</p>
-      </label>
-    </div>
+        className={styles.checkbox}
+      >
+        <label htmlFor={id}>
+          {name}
+          <p>{getPercentPrice(discountRate)}</p>
+        </label>
+      </Checkbox>
+    </List.Item>
   );
 };
 

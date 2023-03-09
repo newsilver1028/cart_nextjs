@@ -1,0 +1,17 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .price {
+      color: #6c6c6c;
+    }
+  }
+}
