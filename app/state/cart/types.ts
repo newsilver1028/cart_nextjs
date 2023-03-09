@@ -6,5 +6,6 @@ export interface CartItem {
 
 export interface Cart {
   items: CartItem[];
+  totalDiscountedPrice: number;
   totalPrice: number;
 }

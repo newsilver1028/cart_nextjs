@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { redirect } from 'next/navigation';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { List, Space } from 'antd';
+import { Button, List, Space } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox/Checkbox';
 import { Discount } from '../api/merchant/types';
 import { cartSelector } from '../state/cart';
@@ -23,6 +23,7 @@ const Cart = () => {
 
   const defaultDiscountList = discounts.map((d) => ({ name: d.name, discountRate: d.discountRate }));
   const isEmptyCart = cartList.items.length === 0;
+  const disabled = cartList.totalPrice < storeInfo.minimumOrderPrice;
 
   const handleCheckbox = (e: CheckboxChangeEvent) => {
     const { value, checked } = e.target;
@@ -58,8 +59,11 @@ const Cart = () => {
             </List>
           </Space>
           <footer>
-            <span>총 주문금액</span>
-            <span>{getFormattedPrice(cartList.totalPrice)}</span>
+            <p>총 주문금액</p>
+            <Space>
+              <span>{getFormattedPrice(cartList.totalDiscountedPrice)}</span>
+              <Button disabled={disabled}>배달 주문하기</Button>
+            </Space>
           </footer>
         </div>
       )}

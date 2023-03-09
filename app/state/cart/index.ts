@@ -5,6 +5,7 @@ import { Cart, CartItem } from './types';
 const INIT_VALUE = {
   items: [],
   totalPrice: 0,
+  totalDiscountedPrice: 0,
 };
 
 const cartState = atom<Cart>({
@@ -27,9 +28,13 @@ const cartSelector = selectorFamily<Cart, { action?: string; name?: string }>({
       const discountsList = get(checkedDiscountsState);
       const totalDiscountRate = discountsList.reduce((acc, curr) => (acc += Number(curr.discountRate)), 0);
       const totalMerchantsPrice = cartList.reduce((acc, curr) => (acc += curr.quantity * curr.price), 0);
-      const totalPrice =
+      const totalDiscountedPrice =
         totalDiscountRate === 0 ? totalMerchantsPrice : totalMerchantsPrice * (1 - totalDiscountRate * 0.01);
-      return { items: cartList, totalPrice: totalPrice <= 0 ? 0 : totalPrice };
+      return {
+        items: cartList,
+        totalPrice: totalMerchantsPrice,
+        totalDiscountedPrice: totalDiscountedPrice <= 0 ? 0 : totalDiscountedPrice,
+      };
     },
   set:
     ({ action, name }) =>
@@ -37,6 +42,7 @@ const cartSelector = selectorFamily<Cart, { action?: string; name?: string }>({
       const cartItems = newValue.items;
       const setCartValue: Cart = {
         totalPrice: newValue.totalDiscountRate,
+        totalDiscountedPrice: newValue.totalDiscountedPrice,
         items: cartItems,
       };
 
