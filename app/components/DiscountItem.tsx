@@ -31,7 +31,6 @@ const DiscountItem = ({ item, handleCheckbox }: Props) => {
           <p>{getPercentPrice(discountRate)}</p>
         </label>
       </Checkbox>
-      <Button>메뉴 선택</Button>
     </List.Item>
   );
 };

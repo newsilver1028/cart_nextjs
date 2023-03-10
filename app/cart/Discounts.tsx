@@ -39,16 +39,14 @@ const Discounts = () => {
   }, [checkList]);
 
   return (
-    <div>
-      <List className={styles.list}>
-        <Checkbox onChange={handleAllChecked} checked={checkAll} className={styles.checkAll}>
-          전체선택
-        </Checkbox>
-        {discounts.map((d) => (
-          <DiscountItem key={d.id} item={d} handleCheckbox={handleCheckbox} />
-        ))}
-      </List>
-    </div>
+    <List className={styles.list}>
+      <Checkbox onChange={handleAllChecked} checked={checkAll} className={styles.checkAll}>
+        전체선택
+      </Checkbox>
+      {discounts.map((d) => (
+        <DiscountItem key={d.id} item={d} handleCheckbox={handleCheckbox} />
+      ))}
+    </List>
   );
 };
 
