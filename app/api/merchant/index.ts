@@ -1,7 +1,22 @@
-import { SERVER_URL } from '@/app/constant';
-import axios from 'axios';
-import { camelizeKeys } from 'humps';
-import { GetMerchantInfoResponse } from './types';
+import { gql } from '@apollo/client';
 
-export const getMerchantInfo = async () =>
-  axios.get(SERVER_URL).then((res) => camelizeKeys(res.data) as GetMerchantInfoResponse);
+export const GET_MERCHANT_INFO = gql`
+  query GetMerchantInfo {
+    merchantName
+    minimumOrderPrice
+    categories {
+      categoryId
+      categoryName
+      items {
+        id
+        name
+        price
+      }
+    }
+    discounts {
+      id
+      name
+      discountRate
+    }
+  }
+`;

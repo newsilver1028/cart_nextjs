@@ -1,9 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-const SERVER_URL = 'https://us-central1-react-baemin.cloudfunctions.net/merchantInfo';
-
 const client = new ApolloClient({
-  uri: SERVER_URL,
+  uri: 'localhost:4000',
   cache: new InMemoryCache(),
 });
 

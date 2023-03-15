@@ -17,7 +17,7 @@ const Cart = () => {
   const cartList = useRecoilValue(cartSelector({}));
 
   const isEmptyCart = cartList.items.length === 0;
-  const disabled = cartList.totalPrice < storeInfo.minimumOrderPrice;
+  const disabled = cartList.totalPrice < storeInfo?.minimumOrderPrice;
 
   useEffect(() => {
     if (!storeInfo.merchantName) redirect('/');

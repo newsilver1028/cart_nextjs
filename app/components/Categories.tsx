@@ -3,20 +3,37 @@
 import { MouseEventHandler } from 'react';
 import { useRecoilState } from 'recoil';
 import { List, message } from 'antd';
-import { ItemsByCategories } from '../api/merchant/types';
+import { gql, useQuery } from '@apollo/client';
+import { Category } from '../api/merchant/types';
 import { cartSelector } from '../state/cart';
 import Loading from '../loading';
 import MerchantItem from './MerchantItem';
 import Title from 'antd/es/typography/Title';
 import styles from './categories.module.scss';
 
-interface Props {
-  items?: ItemsByCategories;
-}
+const GET_MERCHANT_ITEMS = gql`
+  query GetMerchantItems {
+    merchantName
+    categories {
+      categoryId
+      categoryName
+      items {
+        id
+        name
+        price
+      }
+    }
+  }
+`;
 
-const Categories = ({ items }: Props) => {
+const Categories = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [cart, setCart] = useRecoilState(cartSelector({}));
+
+  const { data } = useQuery<{
+    merchantName: string;
+    categories: Category[];
+  }>(GET_MERCHANT_ITEMS);
 
   const onClickItem: MouseEventHandler<HTMLDivElement> = (e) => {
     const { name, price } = e.currentTarget.dataset;
@@ -31,19 +48,20 @@ const Categories = ({ items }: Props) => {
     }));
   };
 
-  if (!items) return <Loading />;
-  const categoryNames = Object.keys(items);
+  if (!data) return <Loading />;
 
   return (
     <section className={styles.wrapper}>
       {contextHolder}
-      {categoryNames.map((name) => {
+      {data.categories.map((item) => {
+        const { categoryId, categoryName, items } = item;
+
         return (
           <List
-            key={name}
+            key={categoryId}
             size='large'
-            header={<Title level={4}>{name}</Title>}
-            dataSource={items[name]}
+            header={<Title level={4}>{categoryName}</Title>}
+            dataSource={items}
             renderItem={(item) => <MerchantItem key={item.id} item={item} onClickItem={onClickItem} />}
             style={{ backgroundColor: 'white' }}
             className={styles.list}
